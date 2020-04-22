@@ -1,6 +1,6 @@
 <?php
 /*
-  
+
   This file includes database-functions
  */
 
@@ -37,7 +37,7 @@ function list_table($table, $con) {
     //choose all data from table
     $sql = "SELECT username,time, msg FROM $table ORDER BY id";
     $result = mysqli_query($con, $sql) or die(mysqli_error($con));
-    
+
     print "<table class='table table-striped' border='1' cellspacing='1' cellpadding='2'>";
     print "<tr>";
     print "<td>";
@@ -54,35 +54,35 @@ function list_table($table, $con) {
         //count total columns
         $total_cols = count($row);
         $i = 0;
-                   
-        print "<tr>";                     
-        //print all columns 
-        while ($i < $total_cols) {            
+
+        print "<tr>";
+        //print all columns
+        while ($i < $total_cols) {
             print "<td>";
-            //print content to the row           
+            //print content to the row
             print $row[$i];
             print "</td>";
             //take the id of the row
             $id = $row[0];
             $i++;
-        }       
+        }
         print "</tr>";
     }
     print "</table>";
 }
 
-/* add_row_to_table() function to add data the database 
+/* add_row_to_table() function to add data the database
  * usernames and passwords  */
 
 function add_row_to_table($table, $con) {
 
     $username = addslashes($_POST['username']);
     $password = addslashes($_POST['password']);
-    
-    $sql = "INSERT INTO $table SET username='$username', 
-  password='$password'";
 
-    /* add data to database inserting sql-clause using 
+    $sql = "INSERT INTO $table SET username='$username',
+  		password='$password'";
+
+    /* add data to database inserting sql-clause using
       mysqli_query()-function.  */
 
     $result = mysqli_query($con, $sql) or die("Inserting data to database failed<br>"
@@ -97,19 +97,15 @@ function add_row_to_table($table, $con) {
  * @param String $table - table where data is fetched
  * @param String $field - field where data is fetched
  * @param String $name - data that is wanted
- * @param Resource $con - database connection 
+ * @param Resource $con - database connection
  * @return String $data - data that is fetched
  */
 
 function get_data($table, $field, $name, $con) {
-
-$sql = "SELECT $field FROM $table WHERE name='$name'";
-$result = mysqli_query($con, $sql); //get results
-$result_array = mysqli_fetch_row($result); //insert into array
-$data = $result_array[0]; //insert into variable
-    
-return $data;
-
+		$sql = "SELECT $field FROM $table WHERE name='$name'";
+		$result = mysqli_query($con, $sql); //get results
+		$result_array = mysqli_fetch_row($result); //insert into array
+		return $result_array[0]; //insert into variable
 }
 
 /**
@@ -123,15 +119,12 @@ return $data;
  */
 
 function add_msg($table, $con, $date, $name2, $msg2) {
-    
-    
-    $sql = "INSERT INTO $table SET time='$date', 
-  username='$name2', msg='$msg2'";
-    
+		die($table);
+
+    $sql = "INSERT INTO $table SET time='$date',
+  		username='$name2', msg='$msg2'";
     $result = mysqli_query($con, $sql) or die("Data insertion failed.<br>"
                     . mysqli_error());
-    
-    
 }
 
 
