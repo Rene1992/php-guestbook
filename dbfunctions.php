@@ -7,8 +7,7 @@
 /* connect() function takes connection to the database */
 
 function connect() {
-
-	$username = "php_form_app";
+		$username = "php_form_app";
     $password = "php_form_app";
     $host = "localhost";
     $database = "php_form_app";
@@ -119,8 +118,6 @@ function get_data($table, $field, $name, $con) {
  */
 
 function add_msg($table, $con, $date, $name2, $msg2) {
-		die($table);
-
     $sql = "INSERT INTO $table SET time='$date',
   		username='$name2', msg='$msg2'";
     $result = mysqli_query($con, $sql) or die("Data insertion failed.<br>"
